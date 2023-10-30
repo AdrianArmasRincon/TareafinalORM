@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title size="large">Add reviews</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Input -->
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Book id <ion-text color="danger">(Required)</ion-text></ion-label>
+      <ion-input placeholder="Enter category name" [(ngModel)]="BookId" name="BookId"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Review <ion-text color="danger">(Required)</ion-text></ion-label>
+      <ion-input placeholder="Enter category name" [(ngModel)]="BookReview" name="BookReview"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <!-- Button -->
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <ion-button expand="block" (click)="addReview()">Add Review</ion-button>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
