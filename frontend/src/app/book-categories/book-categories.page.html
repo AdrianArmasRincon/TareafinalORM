@@ -15,15 +15,16 @@
   <ion-list>
     <ion-item *ngFor="let b of CategoriesList">
       <ion-label>
-        <h1>{{b.category}}</h1>
+        <h1>{{b.category_name}}</h1>
+        <p>{{b.category_id}}</p>
         <ion-grid>
           <ion-row>
 
             <ion-col size="6" class="ion-text-center">
-              <ion-button color="danger" (click)="deleteCategory(b.id)">Delete</ion-button>
+              <ion-button color="danger" (click)="deleteCategory(b.category_id)">Delete</ion-button>
             </ion-col>
             <ion-col size="6" class="ion-text-center">
-              <ion-button (click)="updateCategory(b.id, b.category)">Update</ion-button>
+              <ion-button (click)="updateCategory(b.category_id, b.category_name)">Update</ion-button>
             </ion-col>
 
           </ion-row>

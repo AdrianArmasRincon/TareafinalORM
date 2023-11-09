@@ -13,8 +13,9 @@ export class AddBooksPage implements OnInit {
   bookTitle!: string;
   authorName!: string;
   categoryId!:string;////////////////////////////////////////////////////////////////
+  ReviewId!: string;
 
-  task: Array<{book: string; author: string; category: string}>=[];///////////////////
+  task: Array<{book: string; author: string; category: string, review: string;}>=[];///////////////////
 
   public alertButtons = ['OK'];
 
@@ -26,12 +27,13 @@ export class AddBooksPage implements OnInit {
   //addBook
   addBook() {
     console.log("ts adbook");
-    if(this.bookTitle && this.authorName && this.categoryId){////////////////////////
+    if(this.bookTitle && this.authorName && this.categoryId && this.ReviewId){////////////////////////
       let task={
         book: this.bookTitle,
         author: this.authorName,
-        category: this.categoryId////////////////////////////////////////////////////
-      }
+        category: this.categoryId,////////////////////////////////////////////////////
+        review:  this.ReviewId
+    }
       this.bookService.addBooks(task).subscribe(Response =>{
         console.log("ts adbook suscribe");
         console.log(Response);
@@ -39,6 +41,8 @@ export class AddBooksPage implements OnInit {
       //Var reset values
       this.bookTitle='';
       this.authorName='';
+      this.categoryId='';
+      this.ReviewId='';
       console.log("ts final");
     }
   }

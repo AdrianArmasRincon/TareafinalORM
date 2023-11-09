@@ -20,8 +20,8 @@ const httpOptionsPut = {
 })
 export class BookService {
   endpoint = 'http://localhost:8080/books';
-  endpointCategory = 'http://localhost:8080/book_categories';
-  endpointReview = 'http://localhost:8080/book_reviews ';
+  endpointCategory = 'http://localhost:8080/category';
+  endpointReview = 'http://localhost:8080/review';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -41,11 +41,13 @@ export class BookService {
     let body = new URLSearchParams();
     body.append("title", task.book);
     body.append("author", task.author);
-    body.append("category_id", task.category);///////////////////////////////
+    body.append("category_id", task.category);
+    body.append("review_id", task.review);
 
     console.log("category id: "+task.category);
     console.log("author: "+ task.author);
     console.log("title: "+task.book);
+    console.log("review_id: "+task.review);
 
 
     return this.httpClient.post(this.endpoint, body, httpOptions);
@@ -58,14 +60,20 @@ export class BookService {
   }
 
   //Put
-  updateBooks(id: string, task: any) {
+  updateBooks(id: string, title: string, author: string, category_id: string, review_id: string, ) {
     //const putEndpoint = this.endpoint+`/${id}`;
 
     let body = new URLSearchParams();
     //bodyEncoded.append("id", bookId);
-    body.append("title", task.title);
-    body.append("author", task.author);
-    body.append("category_id", task.category);
+    body.append("title", title);
+    body.append("author", author);
+    body.append("category_id", category_id);
+    body.append("review_id", review_id);
+    
+    console.log(title);
+    console.log(author);
+    console.log(category_id);
+    console.log(review_id);
 
     return this.httpClient.put(this.endpoint + `/${id}`, body, httpOptions);
   }
@@ -97,12 +105,12 @@ export class BookService {
   }
 
   //Put
-  updateCategories(id: string, task: any) {
+  updateCategories(id: string, task: string) {
     //const putEndpoint = this.endpoint+`/${id}`;
 
     let body = new URLSearchParams();
     //bodyEncoded.append("id", bookId);
-    body.append("book_categories", task.category);
+    body.append("category_name", task);
 
     return this.httpClient.put(this.endpointCategory + `/${id}`, body, httpOptions);
   }
@@ -136,12 +144,11 @@ export class BookService {
   }
 
   //Put
-  updateReviews(id: string, task: any) {
-
+  updateReviews(id: string, task: string) {
+    
     let body = new URLSearchParams();
     //bodyEncoded.append("id", bookId);
-    body.append("book_categories", task.category);
-    body.append("book_id", task.bookId);
+    body.append("rating", task);
 
     return this.httpClient.put(this.endpointReview + `/${id}`, body, httpOptions);
   }

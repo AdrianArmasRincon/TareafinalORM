@@ -32,7 +32,7 @@ public class ReviewServiceImpl implements IReviewService{
 	@Override
 	public void update(Review review, long review_id) {
 		reviewDao.findById(review_id).ifPresent((x) ->{
-			review.setRating(x.getRating());
+			review.setReview_id(x.getReview_id());
 			reviewDao.save(review);
 		});
 	}

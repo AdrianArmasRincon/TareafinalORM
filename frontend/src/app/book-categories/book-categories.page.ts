@@ -50,12 +50,9 @@ export class BookCategoriesPage implements OnInit {
         this.category = this.categoryNameUpdate;
       }  
     }
-    
-    let CategoriesList = {
-      category: this.category,
-    }
+
     console.log(category);
-    this.bookService.updateCategories(id, this.CategoriesList).subscribe(response => {
+    this.bookService.updateCategories(id, this.category).subscribe(response => {
       this.CategoriesList = response;
       this.getAllCategories();//listaResult update
     });

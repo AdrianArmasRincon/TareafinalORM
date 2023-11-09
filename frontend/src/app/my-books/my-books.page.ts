@@ -15,9 +15,11 @@ export class MyBooksPage implements OnInit {
   authorUpdate: string = "";
   titleUpdate: string = "";
   categoryUpdate:string = "";////////////////////////////////////////////////////////////////
+  reviewUpdate: string="";
   title: string = "";
   author: string = "";
   category: string = "";////////////////////////////////////////////////////////////////
+  review: string = "";
 
   public alertButtons = ['OK'];
 
@@ -45,14 +47,21 @@ export class MyBooksPage implements OnInit {
   }
 
   //Update
-  updateBook(id: string, title: string, author: string, category: string) {
+  updateBook(id: string, title: string, author: string, category_id: string ,review_id: string) {
     console.log("update book with id: " + id);
-    if (this.titleUpdate && this.authorUpdate && this.categoryUpdate) {
+    if (this.titleUpdate && this.authorUpdate && this.categoryUpdate && this.reviewUpdate) {
       this.title = this.titleUpdate;
       this.author = this.authorUpdate;
       this.category = this.categoryUpdate;
+      this.review = this.reviewUpdate;
+      console.log("update book with title updated: " + this.title);
+      console.log("update book to title: " + this.titleUpdate);
+      console.log("update book with author updated: " + this.author);
+      console.log("update book to author: " + this.author);
       console.log("update book with category updated: " + this.categoryUpdate);
       console.log("update book to category: " + this.category);
+      console.log("update book with review updated: " + this.reviewUpdate);
+      console.log("update book to review: " + this.review);
     } else {
       if (this.titleUpdate) {
         this.title = this.titleUpdate;
@@ -63,15 +72,13 @@ export class MyBooksPage implements OnInit {
       if (this.categoryUpdate) {
         this.category = this.categoryUpdate;
       }  
+      if (this.reviewUpdate) {
+        this.review = this.reviewUpdate;
+      } 
     }
     
-    let booksList = {
-      title: this.title,
-      author: this.author,
-      category: this.category,
-    }
-    console.log(category);
-    this.bookService.updateBooks(id, booksList).subscribe(response => {
+    
+    this.bookService.updateBooks(id, this.title, this.author, this.category, this.review).subscribe(response => {
       this.booksList = response;
       this.getAllBooks();//listaResult update
     });

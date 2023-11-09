@@ -30,6 +30,14 @@ public class Review implements Serializable {
     private List<Book> books;
 
 	// GETTER Y SETTERS
+	public long getReview_id() {
+		return review_id;
+	}
+	
+	public void setReview_id(long review_id) {
+		this.review_id = review_id;
+	}
+	
 	public String getRating() {
 		return rating;
 	}
@@ -38,7 +46,14 @@ public class Review implements Serializable {
 		this.rating = rating;
 	}
 
-
+	public List<Book> getBooks(){
+		return books;
+	}
+	
+	public void setBooks(List<Book> books)  {
+		this.books = books;
+	}
+	
 	// CONSTRUCTOR
 	public Review(String rating) {
 		super();

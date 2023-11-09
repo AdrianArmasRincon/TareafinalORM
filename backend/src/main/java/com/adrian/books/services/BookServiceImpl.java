@@ -23,8 +23,8 @@ public class BookServiceImpl implements IBookService{
 	private IReviewDao reviewDao;
 	
 	@Override
-	public Book findOne(Long book_id) {
-		return bookDao.findById(book_id).get();
+	public Book findOne(Long id) {
+		return bookDao.findById(id).get();
 	}
 	
 	@Override
@@ -58,7 +58,7 @@ public class BookServiceImpl implements IBookService{
 	}
 
 	@Override
-	public void saveBookInBookTypeByReviewId(Book book, long review_id) {
+	public void saveBookInReviewByReviewId(Book book, long review_id) {
 		reviewDao.findById(review_id).ifPresent((x) -> {
 			book.setReview(x);
 			bookDao.save(book);
@@ -66,21 +66,21 @@ public class BookServiceImpl implements IBookService{
 	}
 
 	@Override
-	public void update(Book book, long book_id) {
-		bookDao.findById(book_id).ifPresent((x) ->{
+	public void update(Book book, long id) {
+		bookDao.findById(id).ifPresent((x) ->{
 			book.setId(x.getId());
 			bookDao.save(book);
 		});
 	}
 
 	@Override
-	public void delete(long book_id) {
-		bookDao.deleteById(book_id);
+	public void delete(long id) {
+		bookDao.deleteById(id);
 	}
 
 	@Override
-	public void addCategoryToBook(long category_id, long book_id) {
-		bookDao.findById(book_id).ifPresent((x) -> {
+	public void addCategoryToBook(long category_id, long id) {
+		bookDao.findById(id).ifPresent((x) -> {
 			categoryDao.findById(category_id).ifPresent((y) -> {
 				x.setCategory(y);
 				bookDao.save(x);
@@ -89,9 +89,9 @@ public class BookServiceImpl implements IBookService{
 	}
 
 	@Override
-	public void addBookTypeToBook(long book_type_id, long book_id) {
-		bookDao.findById(book_id).ifPresent((x) -> {
-			reviewDao.findById(book_type_id).ifPresent((y) -> {
+	public void addBookTypeToBook(long category_id, long id) {
+		bookDao.findById(id).ifPresent((x) -> {
+			reviewDao.findById(category_id).ifPresent((y) -> {
 				x.setReview(y);
 				bookDao.save(x);
 			});

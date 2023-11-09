@@ -18,6 +18,10 @@
       <ion-input label="categoryId Update" label-placement="floating" name="categoryUpdate" [(ngModel)]="categoryUpdate"
         fill="solid" placeholder="Enter category id"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-input label="reviewId Update" label-placement="floating" name="reviewUpdate" [(ngModel)]="reviewUpdate"
+        fill="solid" placeholder="Enter review id"></ion-input>
+    </ion-item>
   </ion-list>
 
   <ion-list>
@@ -25,6 +29,7 @@
       <ion-label>
         <h1>{{b.title}}</h1>
         <p>{{b.author}}</p>
+        <p>{{b.review_id}}</p>
         <p>{{b.category_id}}</p>
         <ion-grid>
           <ion-row>
@@ -32,7 +37,7 @@
               <ion-button color="danger" (click)="deleteBook(b.id)">delete</ion-button>
             </ion-col>
             <ion-col size="6" class="ion-text-center">
-              <ion-button (click)="updateBook(b.id, b.title, b.author, b.category)">Update</ion-button>
+              <ion-button (click)="updateBook(b.id, b.title, b.author, b.category_id, b.review_id)">Update</ion-button>
             </ion-col>
             <ion-col>
             </ion-col>

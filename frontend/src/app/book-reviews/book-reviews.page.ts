@@ -12,10 +12,9 @@ export class BookReviewsPage implements OnInit {
 
   
   ReviewsList: any = [];
-  reviewUpdate: string = "";
-  review: string = "";////////////////////////////////////////////////////////////////
-  bookIdUpdate: string = "";
-  bookId: string = "";
+  ratingUpdate: string = "";
+  review_id: string = "";////////////////////////////////////////////////////////////////
+  rating: string = "";
 
   public alertButtons = ['OK'];
 
@@ -42,31 +41,25 @@ export class BookReviewsPage implements OnInit {
   }
 
   //Update
-  updateReview(id: string, review: string, bookId: string) {
+  updateReview(id: string, review: string) {
     console.log("update review with id: " + id);
-    if (this.reviewUpdate && this.bookIdUpdate) {
-      this.review = this.reviewUpdate;
-      this.bookId = this.bookIdUpdate;
-      console.log("update review with category updated: " + this.reviewUpdate);
-      console.log("update review to category: " + this.review);
-      console.log("update bookId with category updated: " + this.bookIdUpdate);
-      console.log("update bookId to category: " + this.bookId);
+    if (this.ratingUpdate) {
+      this.rating = this.ratingUpdate;
+      console.log("update review with category updated: " + this.ratingUpdate);
+      console.log("update review to category: " + this.rating);
     } else {
-      if (this.reviewUpdate) {
-        this.review = this.reviewUpdate;
+      if (this.ratingUpdate) {
+        this.rating = this.ratingUpdate;
       } 
-      if (this.bookIdUpdate) {
-        this.bookId = this.bookIdUpdate;
-      }
     }
     
-    let ReviewsList = {
-      review: this.review,
-      bookId: this.bookId
-    }
+    // let ReviewsList = {
+    //   // review_id: this.review_id,
+    //   rating: this.ratingUpdate
+    // }
+
     console.log(review);
-    console.log(bookId);
-    this.bookService.updateReviews(id, this.ReviewsList).subscribe(response => {
+    this.bookService.updateReviews(id, this.ratingUpdate).subscribe(response => {
       this.ReviewsList = response;
       this.getAllReviews();//listaResult update
     });
